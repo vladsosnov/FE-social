@@ -1,0 +1,19 @@
+.expandedCard {
+  box-sizing: border-box;
+  background-clip: content-box;
+  border: 2px solid var(--white);
+}
+
+.expandedCardHeader {}
+
+.expandedCardHeaderTitle {}
+
+.expandedCardHeaderActions {}
+
+.expandedCardContent {}
+
+.expandedCardContentItems {}
+
+.expandedCardContentItem {}
+
+.expandedCardContentFooterLink {}

@@ -1,0 +1,8 @@
+{
+  "*.{ts,tsx}": [
+    "eslint --max-warnings=0 --fix",
+    "react-scripts test --bail --watchAll=false --passWithNoTests"
+  ],
+  "*.{scss}": ["stylelint --fix"],
+  "*.{ts,tsx,json,scss}": ["prettier --write"]
+}

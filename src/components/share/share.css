@@ -1,0 +1,84 @@
+.share {
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 16px -8px rgba(0, 0, 0, 0.68);
+}
+
+.shareTop {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.shareInput {
+  flex-grow: 1;
+  justify-content: left;
+  max-width: none;
+  margin: 4px 0 4px 8px;
+  padding: 14px;
+  color: var(--black-a60);
+  font-size: 14px;
+  border: 1px solid var(--black-a30);
+  border-radius: 35px;
+}
+
+.shareInput:focus {
+  outline: none;
+}
+
+.shareBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shareButton {
+  margin: 0 8px;
+  padding: 7px;
+  color: var(--white);
+  font-weight: 500;
+  background-color: var(--blue);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.shareImgContainer {
+  position: relative;
+  padding: 0 20px 10px;
+}
+
+.shareImg {
+  width: 100%;
+  object-fit: cover;
+}
+
+.shareActionBar {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: initial;
+  column-gap: 0.4rem;
+}
+
+.shareActionsButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  color: var(--black-a60);
+  line-height: 2.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.16s ease-in;
+}
+
+.shareActionsButton:hover {
+  background-color: var(--black-a08);
+  border-radius: 4px;
+}
+
+.shareActionsIcon {
+  display: flex;
+  margin-right: 4px;
+}

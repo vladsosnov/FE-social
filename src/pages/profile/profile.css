@@ -1,0 +1,4 @@
+.profile {
+  grid-column-start: sidebar;
+  grid-column-end: main;
+}

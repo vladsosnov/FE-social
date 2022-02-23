@@ -1,0 +1,30 @@
+/* stylelint-disable selector-class-pattern */
+.userAvatar {
+  box-sizing: border-box;
+  background-clip: content-box;
+  border: 2px solid var(--white);
+}
+
+.userAvatar--small {
+  width: 24px;
+  height: 24px;
+}
+
+.userAvatar--medium {
+  width: 48px;
+  height: 48px;
+}
+
+.userAvatar--large {
+  width: 72px;
+  height: 72px;
+}
+
+.userAvatar--extra-large {
+  width: 152px;
+  height: 152px;
+}
+
+.userAvatar--circle {
+  border-radius: 50%;
+}

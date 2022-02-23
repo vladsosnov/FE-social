@@ -1,0 +1,92 @@
+.sidebar {
+  position: sticky;
+  top: 76px;
+  grid-area: sidebar;
+  align-self: start;
+  overflow: hidden;
+  text-align: center;
+  background-color: var(--main-background-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-lined);
+}
+
+.sidebarHead {
+  padding: 12px 12px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom-color: var(--black-a08);
+}
+
+.sidebarHeadBg {
+  display: block;
+  height: 56.25px;
+  margin: -12px -12px 0;
+  background-position: center;
+  background-size: cover;
+}
+
+.sidebarUserAvatar {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sidebarUsernameText {
+  margin-top: 36px;
+  color: var(--main-color);
+  font-weight: 700;
+}
+
+.sidebarUserPosition {
+  margin-top: 4px;
+  color: var(--black-a60);
+  font-size: 14px;
+}
+
+.sidebarSavedItemsLink {
+  display: flex;
+  padding: 12px 0 12px 12px;
+  color: var(--black-a60);
+  font-size: 14px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom-color: var(--black-a08);
+  transition: background-color 0.16s ease-in;
+}
+
+.sidebarStatistics,
+.sidebarGroups {
+  margin-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom-color: var(--black-a08);
+}
+
+.sidebarStatisticsTitle,
+.sidebarGroupsTitle {
+  margin-bottom: 2px;
+  padding: 4px 0 4px 12px;
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.sidebarListItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarListItem {
+  display: flex;
+  padding: 4px 12px;
+  color: var(--black-a60);
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color 0.16s ease-in;
+}
+
+.sidebarListItem:hover,
+.sidebarSavedItemsLink:hover {
+  background-color: var(--black-a08);
+}

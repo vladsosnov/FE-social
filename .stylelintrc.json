@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-rational-order"
+  ],
+  "plugins": ["stylelint-images"],
+  "customSyntax": "postcss-scss",
+  "rules": {
+    "images/broken": true,
+    "images/prefer-data-uri": 256,
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$",
+    "color-function-notation": "legacy",
+    "alpha-value-notation": "number"
+  }
+}

@@ -1,0 +1,30 @@
+.footer {
+  margin-top: 24px;
+}
+
+.footerLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 24px 32px;
+}
+
+.footerItem {
+  display: flex;
+  margin: 6px 10px;
+}
+
+.footerItemLink {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  color: var(--black-a60);
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.16s ease-in;
+}
+
+.footerItemLink:hover {
+  color: var(--blue);
+}

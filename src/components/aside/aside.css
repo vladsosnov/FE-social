@@ -1,0 +1,103 @@
+.aside {
+  position: sticky;
+  top: 76px;
+  grid-area: aside;
+  align-self: start;
+  margin-bottom: 8px;
+}
+
+.asideFeed {
+  padding: 12px;
+  background-color: var(--main-background-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-lined);
+}
+
+.asideFeedTitle {
+  color: var(--main-color);
+  font-weight: 600;
+}
+
+.asideFeedRecommendations {
+  margin-top: 16px;
+}
+
+.asideFeedRecommendation {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 14px 0;
+}
+
+.asideFeedRecommendationAvatar {
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-right: 12px;
+}
+
+.asideFeedRecommendationHead {
+  display: block;
+  flex-grow: 1;
+  margin-bottom: 4px;
+  overflow: hidden;
+  line-height: 18px;
+}
+
+.asideFeedRecommendationLink {
+  text-decoration: none;
+}
+
+.asideFeedRecommendationName {
+  color: var(--main-color);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.asideFeedRecommendationSubText {
+  margin-bottom: 2px;
+  color: var(--black-a60);
+  font-size: 12px;
+}
+
+.asideFeedRecommendationFollowButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  overflow: hidden;
+  color: var(--black-a60);
+  font-weight: 600;
+  line-height: 2rem;
+  background-color: transparent;
+  border: 1px solid var(--black-a60);
+  border-radius: 32px;
+  cursor: pointer;
+  transition: all 0.16s ease-in;
+}
+
+.asideFeedRecommendationFollowButton:hover {
+  background-color: var(--black-a08);
+  border: 1px solid var(--black);
+}
+
+.asideFeedViewAll {
+  display: flex;
+  align-items: center;
+  padding: 3px 14px;
+  color: var(--black-a60);
+  font-weight: 600;
+  line-height: 30px;
+  text-decoration: none;
+  transition: all 0.16s ease-in;
+}
+
+.asideFeedViewAll:hover {
+  background-color: var(--black-a08);
+  border-radius: 4px;
+}
+
+.asideFeedViewAllIcon,
+.asideFeedRecommendationFollowIcon {
+  display: flex;
+  margin-left: 4px;
+}
