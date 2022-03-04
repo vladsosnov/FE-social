@@ -1,6 +1,7 @@
-import "./footer.css";
+import type { FC } from "react";
+import styles from "./footer.module.css";
 
-export const Footer = () => {
+export const Footer: FC = () => {
   const footerLinks = [
     { label: "About", to: "/" },
     { label: "Privacy ", to: "/" },
@@ -11,11 +12,11 @@ export const Footer = () => {
   ];
 
   return (
-    <div className="footer">
-      <ul className="footerLinks">
+    <div className={styles.footer}>
+      <ul className={styles.footerLinks}>
         {footerLinks.map((footerLink) => (
-          <li className="footerItem" key={footerLink.label}>
-            <a href={footerLink.to} className="footerItemLink">
+          <li className={styles.footerItem} key={footerLink.label}>
+            <a href={footerLink.to} className={styles.footerItemLink}>
               {footerLink.label}
             </a>
           </li>

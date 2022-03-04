@@ -1,9 +1,13 @@
 export type Follower = {
   userId: string;
+  username: string;
+  profilePicture: string;
 };
 
 export type Following = {
   userId: string;
+  username: string;
+  profilePicture: string;
 };
 
 export type Skill = {
@@ -32,6 +36,8 @@ export type Education = {
 };
 
 export type User = {
+  _id: string;
+  id: string;
   username: string;
   email: string;
   status: string;

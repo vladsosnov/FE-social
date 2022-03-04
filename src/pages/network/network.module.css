@@ -1,0 +1,4 @@
+.network {
+  grid-column-start: main;
+  grid-column-end: aside;
+}

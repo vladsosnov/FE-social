@@ -47,9 +47,9 @@ export const AuthActions = {
     },
 
   login:
-    ({ username, password }: Record<string, string>) =>
+    ({ email, password }: Record<string, string>) =>
     (dispatch: any) => {
-      return AuthService.login({ username, password }).then(
+      return AuthService.login({ email, password }).then(
         (data) => {
           dispatch({
             type: LOGIN_SUCCESS,

@@ -78,6 +78,7 @@
 
 .sidebarListItem {
   display: flex;
+  justify-content: space-between;
   padding: 4px 12px;
   color: var(--black-a60);
   font-weight: 500;

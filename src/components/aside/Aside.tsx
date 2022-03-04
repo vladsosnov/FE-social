@@ -1,59 +1,68 @@
 import { UserAvatar } from "components/shared";
 import { Footer } from "components/footer";
 import { ArrowRightIcon, PlusIcon } from "assets/icons";
-import "./aside.css";
+import type { FC } from "react";
+import type { User } from "types/User";
+import styles from "./aside.module.css";
 
-export const Aside = ({ user }: any) => {
+interface AsideProps {
+  user: User | null;
+}
+
+export const Aside: FC<AsideProps> = ({ user }) => {
   const recommendations = [
     {
       id: 0,
-      picture: null,
+      picture: "",
       name: "Bill Gates",
       position: "Co-chair, Bill & Melinda Gates Foundation",
     },
     {
       id: 1,
-      picture: null,
+      picture: "",
       name: "Nike",
       position: "Company • Sporting Goods",
     },
     {
       id: 2,
-      picture: null,
+      picture: "",
       name: "GitHub",
       position: "Company • Computer Software",
     },
   ];
 
   return (
-    <div className="aside">
-      <div className="asideFeed">
-        <h2 className="asideFeedTitle">Add to your feed</h2>
-        <ul className="asideFeedRecommendations">
+    <div className={styles.aside}>
+      <div className={styles.asideFeed}>
+        <h2 className={styles.asideFeedTitle}>Add to your feed</h2>
+        <ul className={styles.asideFeedRecommendations}>
           {recommendations.map((recommendation) => (
-            <li key={recommendation.id} className="asideFeedRecommendation">
-              <a href="/" className="asideFeedRecommendationAvatar">
+            <li
+              key={recommendation.id}
+              className={styles.asideFeedRecommendation}
+            >
+              <a href="/" className={styles.asideFeedRecommendationAvatar}>
                 <UserAvatar
                   picture={recommendation.picture}
                   username={recommendation.name}
-                  size="medium"
+                  size="m"
                 />
               </a>
-              <div className="asideFeedRecommendationDescription">
-                <div className="asideFeedRecommendationHead">
-                  <a href="/" className="asideFeedRecommendationLink">
-                    <p className="asideFeedRecommendationName">
+              <div className={styles.asideFeedRecommendationDescription}>
+                <div className={styles.asideFeedRecommendationHead}>
+                  <a href="/" className={styles.asideFeedRecommendationLink}>
+                    <p className={styles.asideFeedRecommendationName}>
                       {recommendation.name}
                     </p>
-                    <p className="asideFeedRecommendationSubText">
+                    <p className={styles.asideFeedRecommendationSubText}>
                       {recommendation.position}
                     </p>
                   </a>
                 </div>
-                <button className="asideFeedRecommendationFollowButton">
+                <button className={styles.asideFeedRecommendationFollowButton}>
                   Follow
                   <PlusIcon
-                    customClassName="asideFeedRecommendationFollowIcon"
+                    customClassName={styles.asideFeedRecommendationFollowIcon}
                     width={21}
                   />
                 </button>
@@ -61,9 +70,12 @@ export const Aside = ({ user }: any) => {
             </li>
           ))}
         </ul>
-        <a href="/" className="asideFeedViewAll">
+        <a href="/" className={styles.asideFeedViewAll}>
           View all recommendation
-          <ArrowRightIcon customClassName="asideFeedViewAllIcon" width={21} />
+          <ArrowRightIcon
+            customClassName={styles.asideFeedViewAllIcon}
+            width={21}
+          />
         </a>
       </div>
       <Footer />

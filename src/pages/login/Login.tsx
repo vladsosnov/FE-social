@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { AuthLayout } from "layouts/AuthLayout";
 import { useActions } from "hooks/useActions";
+import styles from "layouts/AuthLayout/authLayout.module.css";
 
 export const Login = () => {
   const email: any = useRef();
@@ -17,24 +18,24 @@ export const Login = () => {
 
   return (
     <AuthLayout>
-      <form className="loginBox" onSubmit={handleSubmit}>
+      <form className={styles.loginBox} onSubmit={handleSubmit}>
         <input
           placeholder="Email"
           type="email"
-          className="loginInput"
+          className={styles.loginInput}
           ref={email}
         />
         <input
           placeholder="Password"
           type="password"
-          className="loginInput"
+          className={styles.loginInput}
           ref={password}
         />
-        <div className="authWrapper">
-          <button className="loginButton" disabled={isFetching}>
+        <div className={styles.authWrapper}>
+          <button className={styles.loginButton} disabled={isFetching}>
             {isFetching ? "Loading" : "Log In"}
           </button>
-          <button className="loginRegisterButton">
+          <button className={styles.loginRegisterButton}>
             <Link to="/register">
               {isFetching ? "Loading" : "Create a New Account"}
             </Link>

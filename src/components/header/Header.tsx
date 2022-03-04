@@ -11,64 +11,97 @@ import {
   PersonIcon,
   LogoutIcon,
 } from "assets/icons";
-import "./header.css";
+import type { FC } from "react";
+import styles from "./header.module.css";
 
-export const Header = () => {
+export const Header: FC = () => {
   const { user } = useSelector((store: any) => store.auth);
   const { logout } = useActions();
 
   return (
-    <div className="header">
-      <div className="headerContent">
-        <NavLink to="/" className="headerNavBranding">
+    <div className={styles.header}>
+      <div className={styles.headerContent}>
+        <NavLink to="/" className={styles.headerNavBranding}>
           <LogoIcon width={34} />
         </NavLink>
-        <div className="headerNavSearch">
-          <SearchIcon width={18} customClassName="headerSearchIcon" />
+        <div className={styles.headerNavSearch}>
+          <SearchIcon width={18} customClassName={styles.headerSearchIcon} />
           <input
             type="text"
             placeholder="Search"
             aria-label="Search"
-            className="headerSearchInput"
+            className={styles.headerSearchInput}
           />
         </div>
-        <nav className="headerNav">
-          <ul className="headerNavPrimaryItems">
-            <li className="headerNavPrimaryItem">
-              <NavLink to="/" className="headerNavPrimaryLink">
+        <nav className={styles.headerNav}>
+          <ul className={styles.headerNavPrimaryItems}>
+            <li className={styles.headerNavPrimaryItem}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.headerNavPrimaryLink} ${styles.active}`
+                    : `${styles.headerNavPrimaryLink}`
+                }
+                to="/"
+              >
                 <HomeIcon width={21} />
                 Home
               </NavLink>
             </li>
-            <li className="headerNavPrimaryItem">
-              <NavLink to="/network" className="headerNavPrimaryLink">
+            <li className={styles.headerNavPrimaryItem}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.headerNavPrimaryLink} ${styles.active}`
+                    : `${styles.headerNavPrimaryLink}`
+                }
+                to="/network"
+              >
                 <NetworkIcon width={21} />
-                My network
+                Network
               </NavLink>
             </li>
-            <li className="headerNavPrimaryItem">
-              <NavLink to="/messenger" className="headerNavPrimaryLink">
+            <li className={styles.headerNavPrimaryItem}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.headerNavPrimaryLink} ${styles.active}`
+                    : `${styles.headerNavPrimaryLink}`
+                }
+                to="/messenger"
+              >
                 <ChatIcon width={21} />
                 Messaging
               </NavLink>
             </li>
-            <li className="headerNavPrimaryItem">
-              <NavLink to="/notifications" className="headerNavPrimaryLink">
+            <li className={styles.headerNavPrimaryItem}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.headerNavPrimaryLink} ${styles.active}`
+                    : `${styles.headerNavPrimaryLink}`
+                }
+                to="/notifications"
+              >
                 <NotificationsIcon width={21} />
                 Notifications
               </NavLink>
             </li>
-            <li className="headerNavPrimaryItem">
+            <li className={styles.headerNavPrimaryItem}>
               <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.headerNavPrimaryLink} ${styles.active}`
+                    : `${styles.headerNavPrimaryLink}`
+                }
                 to={`/profile/${user.username}`}
-                className="headerNavPrimaryLink"
               >
                 <PersonIcon width={22} />
                 {user.username}
               </NavLink>
             </li>
-            <li className="headerNavPrimaryItem">
-              <button onClick={logout} className="headerNavPrimaryLink">
+            <li className={styles.headerNavPrimaryItem}>
+              <button onClick={logout} className={styles.headerNavPrimaryLink}>
                 <LogoutIcon width={22} />
                 Logout
               </button>

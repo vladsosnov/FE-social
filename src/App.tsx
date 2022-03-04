@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Home, Login, Profile, Register, Messenger } from './pages';
+import { useSelector } from "react-redux";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Home, Login, Profile, Register, Messenger, Network } from "./pages";
 
 export const App = () => {
   const { isLoggedIn } = useSelector((store: any) => store.auth);
@@ -22,6 +22,7 @@ export const App = () => {
           element={!isLoggedIn ? <Navigate to="/" /> : <Messenger />}
         />
         <Route path="/profile/:username" element={<Profile />} />
+        <Route path="/network" element={isLoggedIn ? <Network /> : <Login />} />
       </Routes>
     </BrowserRouter>
   );

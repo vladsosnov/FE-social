@@ -5,7 +5,7 @@ export const ThemeToggle = () => {
   };
 
   return (
-    <div className="main">
+    <div>
       <button onClick={() => setTheme("red")}>Set Theme(Red)</button>
       <button onClick={() => setTheme("default")}>Reset Theme Default</button>
     </div>

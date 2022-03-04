@@ -11,9 +11,15 @@ import {
   ShareIcon,
   SendIcon,
 } from "assets/icons";
-import "./post.css";
+import type { Post as PostType } from "types/Post";
+import type { FC } from "react";
+import styles from "./post.module.css";
 
-export const Post = ({ post }: any) => {
+interface PostProps {
+  post: PostType;
+}
+
+export const Post: FC<PostProps> = ({ post }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
@@ -48,58 +54,88 @@ export const Post = ({ post }: any) => {
   };
 
   return (
-    <div className="post">
-      <Link to={`profile/${user.username}`} className="postActor">
+    <div className={styles.post}>
+      <Link to={`profile/${user.username}`} className={styles.postActor}>
         <UserAvatar
           picture={user.profilePicture}
           username={user.name}
-          size="medium"
+          size="m"
         />
-        <div className="postActorMeta">
-          <span className="postUsername">{user.username}</span>
-          <span className="postUserPosition">Company • Sporting Goods</span>
-          <span className="postPublishDate">
+        <div className={styles.postActorMeta}>
+          <span className={styles.postUsername}>{user.username}</span>
+          <span className={styles.postUserPosition}>
+            Company • Sporting Goods
+          </span>
+          <span className={styles.postPublishDate}>
             {moment().startOf(post.createdAt).fromNow()}
           </span>
         </div>
       </Link>
-      <div className="postControlMenu" onClick={moreVertHandle}>
+      <div
+        className={styles.postControlMenu}
+        onClick={moreVertHandle}
+        aria-hidden="true"
+      >
         <MoreVertIcon width={21} />
       </div>
-      <div className="postContent">
-        <span className="postText">{post?.desc}</span>
+      <div className={styles.postContent}>
+        <span className={styles.postText}>{post?.desc}</span>
       </div>
-      <div className="postImage">
+      <div className={styles.postImage}>
         {post.image && (
           <img
-            className="postImageImg"
+            className={styles.postImageImg}
             src={`${PF}${post.image}`}
             alt={post.desc}
           />
         )}
       </div>
-      <div className="postSocialActivity">
-        <div className="postSocialCounts">
-          <span className="postLikeCounter">{like} people like it</span>
-          <span className="postCommentCounter">
-            {post.comment || 0} comments
+      <div className={styles.postSocialActivity}>
+        <div className={styles.postSocialCounts}>
+          <span className={styles.postLikeCounter}>{like} people like it</span>
+          <span className={styles.postCommentCounter}>
+            {post.comments.length || 0} comments
           </span>
         </div>
-        <div className="postSocialActionBar">
-          <button className="postSocialActionsButton" onClick={likeHandler}>
-            <LikeIcon customClassName="postSocialActionsIcon" width={21} />
+        <div className={styles.postSocialActionBar}>
+          <button
+            className={styles.postSocialActionsButton}
+            onClick={likeHandler}
+          >
+            <LikeIcon
+              customClassName={styles.postSocialActionsIcon}
+              width={21}
+            />
             Like
           </button>
-          <button className="postSocialActionsButton" onClick={likeHandler}>
-            <CommentIcon customClassName="postSocialActionsIcon" width={21} />
+          <button
+            className={styles.postSocialActionsButton}
+            onClick={likeHandler}
+          >
+            <CommentIcon
+              customClassName={styles.postSocialActionsIcon}
+              width={21}
+            />
             Comment
           </button>
-          <button className="postSocialActionsButton" onClick={likeHandler}>
-            <ShareIcon customClassName="postSocialActionsIcon" width={21} />
+          <button
+            className={styles.postSocialActionsButton}
+            onClick={likeHandler}
+          >
+            <ShareIcon
+              customClassName={styles.postSocialActionsIcon}
+              width={21}
+            />
             Share
           </button>
-          <button className="postSocialActionsButton" onClick={likeHandler}>
-            <SendIcon customClassName="postSocialActionsIcon" width={21} />
+          <button
+            className={styles.postSocialActionsButton}
+            onClick={likeHandler}
+          >
+            <SendIcon
+              customClassName={styles.postSocialActionsIcon}
+              width={21}
+            />
             Send
           </button>
         </div>

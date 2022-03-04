@@ -2,11 +2,17 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { API } from "hooks/useApi";
-import "./rightbar.css";
+import type { FC } from "react";
+import type { Follower, User } from "types/User";
+import styles from "./rightbar.module.css";
 
-export const Rightbar = ({ user }: any) => {
+interface RightbarProps {
+  user: User;
+}
+
+export const Rightbar: FC<RightbarProps> = ({ user }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const [friends, setFriends] = useState([]);
+  const [friends, setFriends] = useState<Follower[]>([]);
   const { user: currentUser } = useSelector((store: any) => store.auth);
   const [followed, setFollowed] = useState(
     currentUser.followings.includes(user?.id),
@@ -38,14 +44,16 @@ export const Rightbar = ({ user }: any) => {
         //dispatch({ type: "FOLLOW", payload: user._id });
       }
       setFollowed(!followed);
-    } catch (err) {}
+    } catch (err) {
+      console.log("err", err);
+    }
   };
 
   const HomeRightbar = () => {
     return (
       <>
         {user?.username !== currentUser?.username && (
-          <button className="rightbarFollowButton" onClick={handleClick}>
+          <button className={styles.rightbarFollowButton} onClick={handleClick}>
             {followed ? "Unfollow" : "Follow"}
           </button>
         )}
@@ -56,19 +64,19 @@ export const Rightbar = ({ user }: any) => {
   const ProfileRightbar = () => {
     return (
       <>
-        <h4 className="rightbarTitle">User information</h4>
-        <div className="rightbarInfo">
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">City:</span>
-            <span className="rightbarInfoValue">{user.city}</span>
+        <h4 className={styles.rightbarTitle}>User information</h4>
+        <div className={styles.rightbarInfo}>
+          <div className={styles.rightbarInfoItem}>
+            <span className={styles.rightbarInfoKey}>City:</span>
+            <span className={styles.rightbarInfoValue}>{user.city}</span>
           </div>
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">From:</span>
-            <span className="rightbarInfoValue">{user.from}</span>
+          <div className={styles.rightbarInfoItem}>
+            <span className={styles.rightbarInfoKey}>From:</span>
+            <span className={styles.rightbarInfoValue}>{user.from}</span>
           </div>
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">Relationship:</span>
-            <span className="rightbarInfoValue">
+          <div className={styles.rightbarInfoItem}>
+            <span className={styles.rightbarInfoKey}>Relationship:</span>
+            <span className={styles.rightbarInfoValue}>
               {user.relationship === 1
                 ? "Single"
                 : user.relationship === 2
@@ -77,14 +85,15 @@ export const Rightbar = ({ user }: any) => {
             </span>
           </div>
         </div>
-        <h4 className="rightbarTitle">User friends</h4>
-        <div className="rightbarFollowings">
-          {friends.map((friend: any) => (
+        <h4 className={styles.rightbarTitle}>User friends</h4>
+        <div className={styles.rightbarFollowings}>
+          {friends.map((friend) => (
             <Link
+              key={friend.userId}
               to={`profile/${friend.username}`}
               style={{ textDecoration: "none" }}
             >
-              <div className="rightbarFollowing">
+              <div className={styles.rightbarFollowing}>
                 <img
                   src={
                     friend.profilePicture
@@ -92,9 +101,11 @@ export const Rightbar = ({ user }: any) => {
                       : `${PF}person/noAvatar.png`
                   }
                   alt=""
-                  className="rightbarFollowingImg"
+                  className={styles.rightbarFollowingImg}
                 />
-                <span className="rightbarFollowingName">{friend.username}</span>
+                <span className={styles.rightbarFollowingName}>
+                  {friend.username}
+                </span>
               </div>
             </Link>
           ))}
@@ -104,8 +115,8 @@ export const Rightbar = ({ user }: any) => {
   };
 
   return (
-    <div className="rightbar">
-      <div className="rightbarWrapper">
+    <div className={styles.rightbar}>
+      <div className={styles.rightbarWrapper}>
         {user ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>

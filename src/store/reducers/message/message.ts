@@ -1,4 +1,4 @@
-import { MessageAction } from "./types";
+import type { MessageAction } from "./types";
 import { SET_MESSAGE, CLEAR_MESSAGE } from "store/actions/types";
 
 const initialState = {};

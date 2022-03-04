@@ -7,9 +7,11 @@ export type Comment = {
 };
 
 export type Post = {
+  _id: string;
   userId: string;
   desc: string;
   image: number;
   likes: Array<Like>;
   comments: Array<Comment>;
+  createdAt: any;
 };

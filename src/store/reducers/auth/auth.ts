@@ -5,9 +5,9 @@ import {
   LOGIN_FAIL,
   LOGOUT,
 } from "store/actions/types";
-import { AuthAction } from "./types";
+import type { AuthAction } from "./types";
 
-const user = JSON.parse(localStorage.getItem("user") || "");
+const user = JSON.parse(localStorage.getItem("user") || JSON.stringify(null));
 
 const initialState = user
   ? { isLoggedIn: true, user }

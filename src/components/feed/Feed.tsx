@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Post } from "components/post/Post";
 import { API } from "hooks/useApi";
-import "./feed.css";
+import type { FC } from "react";
+import type { Post as PostType } from "types/Post";
+import styles from "./feed.module.css";
 
-export const Feed = ({ username }: any) => {
-  const [posts, setPosts] = useState([]);
+interface FeedProps {
+  username: string;
+}
+
+export const Feed: FC<FeedProps> = ({ username }) => {
+  const [posts, setPosts] = useState<PostType[]>([]);
   const { user } = useSelector((store: any) => store.auth);
 
   useEffect(() => {
@@ -14,11 +20,11 @@ export const Feed = ({ username }: any) => {
         ? await API.get(`posts/profile/${username}`)
         : await API.get(`posts/timeline/${user._id}`);
       setPosts(
-        res.data.sort((p1: any, p2: any) => {
-          const createdAtDateP1: any = new Date(p2.createdAt);
-          const createdAtDateP2: any = new Date(p1.createdAt);
+        res.data.sort((p1: PostType, p2: PostType) => {
+          const createdAtDateP1 = new Date(p2.createdAt);
+          const createdAtDateP2 = new Date(p1.createdAt);
 
-          return createdAtDateP1 - createdAtDateP2;
+          return createdAtDateP1.valueOf() - createdAtDateP2.valueOf();
         }),
       );
     };
@@ -28,9 +34,9 @@ export const Feed = ({ username }: any) => {
   return (
     <>
       {posts.length ? (
-        posts.map((p: any) => <Post key={p._id} post={p} />)
+        posts.map((p) => <Post key={p._id} post={p} />)
       ) : (
-        <div className="feedEmptyState">There are no posts yet!</div>
+        <div className={styles.feedEmptyState}>There are no posts yet!</div>
       )}
     </>
   );

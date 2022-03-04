@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import { MainLayout } from "layouts/MainLayout/MainLayout";
 import { Feed } from "components/feed";
 import { Aside } from "components/aside";
-import { Sidebar } from "components/sidebar";
+import { Sidebar } from "components/sidebar/HomeSidebar";
 import { Share } from "components/share";
-import "./home.css";
+import styles from "./home.module.css";
 
 export const Home = () => {
   const { user } = useSelector((store: any) => store.auth);
@@ -12,7 +12,7 @@ export const Home = () => {
   return (
     <MainLayout>
       <Sidebar user={user} />
-      <main className="home">
+      <main className={styles.home}>
         <Share />
         <Feed username="" />
       </main>

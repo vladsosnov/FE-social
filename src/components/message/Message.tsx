@@ -1,18 +1,27 @@
 import moment from "moment";
-import "./message.css";
+import type { FC } from "react";
+import type { Message as MessageType } from "types/Message";
+import styles from "./message.module.css";
 
-export const Message = ({ message, own }: any) => {
+interface MessageProps {
+  message: MessageType;
+  own: boolean;
+}
+
+export const Message: FC<MessageProps> = ({ message, own }) => {
   return (
-    <div className={own ? "message own" : "message"}>
-      <div className="messageTop">
+    <div
+      className={own ? `${styles.message} ${styles.own}` : `${styles.message}`}
+    >
+      <div className={styles.messageTop}>
         <img
-          className="messageImg"
+          className={styles.messageImg}
           src="https://images.pexels.com/photos/3686769/pexels-photo-3686769.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
           alt=""
         />
-        <p className="messageText">{message.text}</p>
+        <p className={styles.messageText}>{message.text}</p>
       </div>
-      <div className="messageBottom">
+      <div className={styles.messageBottom}>
         {moment().startOf(message.createdAt).fromNow()}
       </div>
     </div>

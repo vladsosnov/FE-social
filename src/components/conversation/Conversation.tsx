@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { API } from "hooks/useApi";
-import "./conversation.css";
+import styles from "./conversation.module.css";
 
 export const Conversation = ({ conversation, currentUser }: any) => {
   const [user, setUser] = useState<any>(null);
@@ -24,9 +24,9 @@ export const Conversation = ({ conversation, currentUser }: any) => {
   }, [conversation, currentUser]);
 
   return (
-    <div className="conversation">
+    <div className={styles.conversation}>
       <img
-        className="conversationImg"
+        className={styles.conversationImg}
         src={
           user?.profilePicture
             ? `${PF}${user.profilePicture}`
@@ -34,7 +34,7 @@ export const Conversation = ({ conversation, currentUser }: any) => {
         }
         alt=""
       />
-      <span className="conversationName">{user?.username}</span>
+      <span className={styles.conversationName}>{user?.username}</span>
     </div>
   );
 };

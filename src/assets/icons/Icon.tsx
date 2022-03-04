@@ -5,11 +5,7 @@ interface IconProps {
   customClassName?: string;
 }
 
-const Icon: FC<IconProps> = ({
-  width,
-  customClassName = "",
-  children,
-}: any) => (
+const Icon: FC<IconProps> = ({ width, customClassName = "", children }) => (
   <div className={`icon ${customClassName}`} style={{ width }}>
     {children}
   </div>

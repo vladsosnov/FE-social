@@ -1,0 +1,35 @@
+.sidebar {
+  grid-area: sidebar;
+  padding: 12px;
+  background-color: var(--main-background-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-lined);
+}
+
+.sidebarTitle {
+  font-weight: 18px;
+  font-weight: normal;
+}
+
+.sidebarList {
+  margin-top: 14px;
+}
+
+.sidebarItemCountWrap {
+  display: flex;
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--black-a60);
+}
+
+.sidebarItem:not(:first-child) {
+  margin-top: 12px;
+}
+
+.sidebarItemName {
+  margin-left: 6px;
+}

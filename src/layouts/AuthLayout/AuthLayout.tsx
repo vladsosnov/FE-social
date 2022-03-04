@@ -1,11 +1,11 @@
-import type { FC } from 'react';
-import './authLayout.css';
+import type { FC } from "react";
+import styles from "./authLayout.module.css";
 
-export const AuthLayout: FC<any> = ({ children }) => {
+export const AuthLayout: FC = ({ children }) => {
   return (
-    <div className="login">
-      <div className="loginWrapper">
-        <div className="loginRight">{children}</div>
+    <div className={styles.login}>
+      <div className={styles.loginWrapper}>
+        <div className={styles.loginRight}>{children}</div>
       </div>
     </div>
   );
