@@ -2,34 +2,35 @@ import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthLayout } from "layouts/AuthLayout";
 import { API } from "hooks/useApi";
+import type React from "react";
 import styles from "layouts/AuthLayout/authLayout.module.css";
 
 export const Register = () => {
-  const username: any = useRef();
-  const position: any = useRef();
-  const email: any = useRef();
-  const password: any = useRef();
-  const passwordAgain: any = useRef();
+  const username = useRef<HTMLInputElement>(null);
+  const position = useRef<HTMLInputElement>(null);
+  const email = useRef<HTMLInputElement>(null);
+  const password = useRef<HTMLInputElement>(null);
+  const passwordAgain = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    if (password.current.value !== passwordAgain.current.value) {
-      passwordAgain.current.setCustomValidity("Passwords don't match");
+    if (password.current?.value !== passwordAgain.current?.value) {
+      passwordAgain.current?.setCustomValidity("Passwords don't match");
       return;
     }
 
     const user = {
-      username: username.current.value,
-      position: position.current.value,
-      email: email.current.value,
-      password: password.current.value,
+      username: username.current?.value,
+      position: position.current?.value,
+      email: email.current?.value,
+      password: password.current?.value,
     };
 
     try {
       await API.post("/auth/register", user);
-      navigate("login");
+      navigate("/");
     } catch (err) {
       console.log("err", err);
     }
@@ -77,7 +78,7 @@ export const Register = () => {
             Sign Up
           </button>
           <button className={styles.loginRegisterButton}>
-            <Link to="/">Log into Account</Link>
+            <Link to="/login">Log into Account</Link>
           </button>
         </div>
       </form>

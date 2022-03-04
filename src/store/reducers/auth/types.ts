@@ -1,33 +1,32 @@
-export enum AuthActionEnum {
-  REGISTER_SUCCESS = "REGISTER_SUCCESS",
-  REGISTER_FAIL = "REGISTER_FAIL",
-  LOGIN_SUCCESS = "LOGIN_SUCCESS",
-  LOGIN_FAIL = "LOGIN_FAIL",
-  LOGOUT = "LOGOUT",
-}
+export type AuthActionEnum =
+  | "REGISTER_SUCCESS"
+  | "REGISTER_FAIL"
+  | "LOGIN_SUCCESS"
+  | "LOGIN_FAIL"
+  | "LOGOUT";
 
 export interface RegisterSuccessAction {
-  type: AuthActionEnum.REGISTER_SUCCESS;
+  type: "REGISTER_SUCCESS";
   payload: any;
 }
 
 export interface RegisterFailAction {
-  type: AuthActionEnum.REGISTER_FAIL;
+  type: "REGISTER_FAIL";
   payload: any;
 }
 
 export interface LoginSuccessAction {
-  type: AuthActionEnum.LOGIN_SUCCESS;
+  type: "LOGIN_SUCCESS";
   payload: any;
 }
 
 export interface LoginFailAction {
-  type: AuthActionEnum.LOGIN_FAIL;
+  type: "LOGIN_FAIL";
   payload: any;
 }
 
 export interface LogoutAction {
-  type: AuthActionEnum.LOGOUT;
+  type: "LOGOUT";
   payload: any;
 }
 

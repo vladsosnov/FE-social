@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { API } from "hooks/useApi";
 import styles from "./conversation.module.css";
+import type { User } from "types/User";
 
 export const Conversation = ({ conversation, currentUser }: any) => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User>();
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {

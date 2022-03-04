@@ -7,14 +7,18 @@ import {
   SET_MESSAGE,
 } from "./types";
 import AuthService from "services/auth";
+import type { AppDispatch } from "store";
+import type { Auth } from "types/Auth";
 
 export const AuthActions = {
   registerAction:
-    (username: string, email: string, password: string) => (dispatch: any) => {
+    (username: string, email: string, password: string) =>
+    (dispatch: AppDispatch) => {
       return AuthService.register({ username, email, password }).then(
         (response) => {
           dispatch({
             type: REGISTER_SUCCESS,
+            payload: null,
           });
 
           dispatch({
@@ -34,6 +38,7 @@ export const AuthActions = {
 
           dispatch({
             type: REGISTER_FAIL,
+            payload: null,
           });
 
           dispatch({
@@ -47,8 +52,8 @@ export const AuthActions = {
     },
 
   login:
-    ({ email, password }: Record<string, string>) =>
-    (dispatch: any) => {
+    ({ email, password }: Auth) =>
+    (dispatch: AppDispatch) => {
       return AuthService.login({ email, password }).then(
         (data) => {
           dispatch({
@@ -68,6 +73,7 @@ export const AuthActions = {
 
           dispatch({
             type: LOGIN_FAIL,
+            payload: null,
           });
 
           dispatch({
@@ -80,11 +86,12 @@ export const AuthActions = {
       );
     },
 
-  logout: () => (dispatch: any) => {
+  logout: () => (dispatch: AppDispatch) => {
     AuthService.logout();
 
     dispatch({
       type: LOGOUT,
+      payload: null,
     });
   },
 };

@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useActions } from "hooks/useActions";
 import {
   LogoIcon,
@@ -11,11 +10,12 @@ import {
   PersonIcon,
   LogoutIcon,
 } from "assets/icons";
+import { useTypedSelector } from "hooks/useSelector";
 import type { FC } from "react";
 import styles from "./header.module.css";
 
 export const Header: FC = () => {
-  const { user } = useSelector((store: any) => store.auth);
+  const { user } = useTypedSelector((store) => store.auth);
   const { logout } = useActions();
 
   return (

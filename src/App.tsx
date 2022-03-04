@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux";
+import { useTypedSelector } from "hooks/useSelector";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Home, Login, Profile, Register, Messenger, Network } from "./pages";
 
 export const App = () => {
-  const { isLoggedIn } = useSelector((store: any) => store.auth);
+  const { isLoggedIn } = useTypedSelector((store) => store.auth);
 
   return (
     <BrowserRouter>
@@ -21,7 +21,10 @@ export const App = () => {
           path="/messenger"
           element={!isLoggedIn ? <Navigate to="/" /> : <Messenger />}
         />
-        <Route path="/profile/:username" element={<Profile />} />
+        <Route
+          path="/profile/:username"
+          element={isLoggedIn ? <Profile /> : <Login />}
+        />
         <Route path="/network" element={isLoggedIn ? <Network /> : <Login />} />
       </Routes>
     </BrowserRouter>

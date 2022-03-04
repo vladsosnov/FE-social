@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { API } from "hooks/useApi";
+import { useTypedSelector } from "hooks/useSelector";
 import type { FC } from "react";
 import type { Follower, User } from "types/User";
 import styles from "./rightbar.module.css";
@@ -13,7 +13,7 @@ interface RightbarProps {
 export const Rightbar: FC<RightbarProps> = ({ user }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState<Follower[]>([]);
-  const { user: currentUser } = useSelector((store: any) => store.auth);
+  const { user: currentUser } = useTypedSelector((store) => store.auth);
   const [followed, setFollowed] = useState(
     currentUser.followings.includes(user?.id),
   );

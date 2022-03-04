@@ -2,18 +2,22 @@ import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { AuthLayout } from "layouts/AuthLayout";
 import { useActions } from "hooks/useActions";
+import type React from "react";
 import styles from "layouts/AuthLayout/authLayout.module.css";
 
 export const Login = () => {
-  const email: any = useRef();
-  const password: any = useRef();
+  const email = useRef<HTMLInputElement>(null);
+  const password = useRef<HTMLInputElement>(null);
   const [isFetching, setIsFetching] = useState(false);
   const { login } = useActions();
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setIsFetching(true);
-    login({ email: email.current.value, password: password.current.value });
+    login({
+      email: email.current?.value as string,
+      password: password.current?.value as string,
+    });
   };
 
   return (

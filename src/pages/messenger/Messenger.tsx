@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
 import { Conversation } from "components/conversation";
 import { Message } from "components/message";
 import { ChatOnline } from "components/chatOnline";
 import { API } from "hooks/useApi";
 import { io } from "socket.io-client";
+import { useTypedSelector } from "hooks/useSelector";
 import styles from "./messenger.module.css";
 
 export const Messenger = () => {
@@ -15,7 +15,7 @@ export const Messenger = () => {
   const [arrivalMessage, setArrivalMessage] = useState<any>(null);
   const [onlineUsers, setOnlineUsers] = useState<any>([]);
   const socket: any = useRef();
-  const { user } = useSelector((store: any) => store.auth);
+  const { user } = useTypedSelector((store) => store.auth);
   const scrollRef: any = useRef();
 
   useEffect(() => {

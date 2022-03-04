@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { Post } from "components/post/Post";
 import { API } from "hooks/useApi";
+import { useTypedSelector } from "hooks/useSelector";
 import type { FC } from "react";
 import type { Post as PostType } from "types/Post";
 import styles from "./feed.module.css";
@@ -12,7 +12,7 @@ interface FeedProps {
 
 export const Feed: FC<FeedProps> = ({ username }) => {
   const [posts, setPosts] = useState<PostType[]>([]);
-  const { user } = useSelector((store: any) => store.auth);
+  const { user } = useTypedSelector((store) => store.auth);
 
   useEffect(() => {
     const fetchPosts = async () => {

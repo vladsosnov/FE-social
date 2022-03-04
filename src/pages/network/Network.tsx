@@ -1,15 +1,15 @@
 import { Sidebar } from "components/sidebar/NetworkSidebar";
 import { UsersList } from "components/users/usersList";
 import { API } from "hooks/useApi";
+import { useTypedSelector } from "hooks/useSelector";
 import { MainLayout } from "layouts";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import type { User } from "types/User";
 import styles from "./network.module.css";
 
 export const Network = () => {
   const [users, setUsers] = useState<User[]>([]);
-  const { user } = useSelector((store: any) => store.auth);
+  const { user } = useTypedSelector((store) => store.auth);
 
   useEffect(() => {
     const fetchUsers = async () => {

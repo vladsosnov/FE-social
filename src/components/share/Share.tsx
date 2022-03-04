@@ -1,21 +1,28 @@
 import { useRef, useState } from "react";
-import { useSelector } from "react-redux";
 import { UserAvatar } from "components/shared";
 import { API } from "hooks/useApi";
 import { PhotoIcon, VideoIcon, EventIcon, ArticleIcon } from "assets/icons";
+import { useTypedSelector } from "hooks/useSelector";
 import type { FC } from "react";
+import type React from "react";
 import styles from "./share.module.css";
 
+interface NewPost {
+  userId: string;
+  desc: string;
+  image?: string;
+}
+
 export const Share: FC = () => {
-  const { user } = useSelector((store: any) => store.auth);
-  const desc: any = useRef();
+  const { user } = useTypedSelector((store) => store.auth);
+  const desc = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
 
-  const submitHandler = async (e: any) => {
+  const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const newPost: any = {
+    const newPost: NewPost = {
       userId: user._id,
-      desc: desc.current.value,
+      desc: desc.current?.value || "",
     };
     if (file) {
       const data = new FormData();
@@ -79,7 +86,6 @@ export const Share: FC = () => {
               type="file"
               id="file"
               accept=".png,.jpeg,.jpg"
-              // onChange={(e: any) => setFile(e.target.files[0])}
               onChange={fileChangeHandler}
             />
           </label>

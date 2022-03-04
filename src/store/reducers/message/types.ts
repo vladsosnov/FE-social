@@ -1,15 +1,12 @@
-export enum MessageActionEnum {
-  SET_MESSAGE = "SET_MESSAGE",
-  CLEAR_MESSAGE = "CLEAR_MESSAGE",
-}
+export type MessageActionEnum = "SET_MESSAGE" | "CLEAR_MESSAGE";
 
 export interface SetMessageAction {
-  type: MessageActionEnum.SET_MESSAGE;
+  type: "SET_MESSAGE";
   payload: any;
 }
 
 export interface ClearMessageAction {
-  type: MessageActionEnum.CLEAR_MESSAGE;
+  type: "CLEAR_MESSAGE";
   payload: any;
 }
 

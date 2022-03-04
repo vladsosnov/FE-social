@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { UserAvatar } from "components/shared";
 import { API } from "hooks/useApi";
@@ -11,6 +10,8 @@ import {
   ShareIcon,
   SendIcon,
 } from "assets/icons";
+import { useTypedSelector } from "hooks/useSelector";
+import type { User } from "types/User";
 import type { Post as PostType } from "types/Post";
 import type { FC } from "react";
 import styles from "./post.module.css";
@@ -23,9 +24,9 @@ export const Post: FC<PostProps> = ({ post }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
-  const [user, setUser] = useState<any>({});
+  const [user, setUser] = useState<User | null>(null);
   const { userId } = post;
-  const { user: currentUser } = useSelector((store: any) => store.auth);
+  const { user: currentUser } = useTypedSelector((store) => store.auth);
 
   useEffect(() => {
     setIsLiked(post.likes.includes(currentUser._id));
@@ -41,7 +42,7 @@ export const Post: FC<PostProps> = ({ post }) => {
 
   const likeHandler = () => {
     try {
-      API.put(`/posts/${post._id}/like`, { userId: user._id });
+      API.put(`/posts/${post._id}/like`, { userId: user?._id });
     } catch (err) {
       console.log("err", err);
     }
@@ -55,14 +56,14 @@ export const Post: FC<PostProps> = ({ post }) => {
 
   return (
     <div className={styles.post}>
-      <Link to={`profile/${user.username}`} className={styles.postActor}>
+      <Link to={`profile/${user?.username}`} className={styles.postActor}>
         <UserAvatar
-          picture={user.profilePicture}
-          username={user.name}
+          picture={user?.profilePicture || ""}
+          username={user?.username || ""}
           size="m"
         />
         <div className={styles.postActorMeta}>
-          <span className={styles.postUsername}>{user.username}</span>
+          <span className={styles.postUsername}>{user?.username}</span>
           <span className={styles.postUserPosition}>
             Company • Sporting Goods
           </span>

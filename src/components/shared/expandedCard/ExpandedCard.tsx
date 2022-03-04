@@ -2,25 +2,23 @@ import type { FC } from "react";
 import styles from "./expandedCard.module.css";
 
 export const ExpandedCard: FC = () => {
-  const expandedCardActions: any = () => {
-    return [
-      {
-        id: "edit",
-        name: "Edit",
-        icon: "edit",
-      },
-      {
-        id: "add",
-        name: "Adit",
-        icon: "add",
-      },
-      {
-        id: "post",
-        name: "Start a post",
-        icon: "",
-      },
-    ];
-  };
+  const expandedCardActions = [
+    {
+      id: "edit",
+      name: "Edit",
+      icon: "edit",
+    },
+    {
+      id: "add",
+      name: "Adit",
+      icon: "add",
+    },
+    {
+      id: "post",
+      name: "Start a post",
+      icon: "",
+    },
+  ];
 
   return (
     <>
@@ -28,7 +26,7 @@ export const ExpandedCard: FC = () => {
         <h2 className={styles.expandedCardHeaderTitle}>Experience</h2>
         <div className={styles.expandedCardHeaderActions}>
           <ul>
-            {expandedCardActions.map((action: any) => (
+            {expandedCardActions.map((action) => (
               <li key={action.id}>
                 <div>{action.name}</div>
               </li>

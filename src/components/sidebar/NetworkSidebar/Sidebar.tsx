@@ -10,7 +10,7 @@ export const Sidebar = () => {
             <img src="" alt="" className="" />
             <div className={styles.sidebarItemName}>Connections</div>
           </div>
-          <div className={styles.sidebarItemCount}>4</div>
+          <div className={styles.sidebarItemCount}>5</div>
         </li>
         <li className={styles.sidebarItem}>
           <div className={styles.sidebarItemCountWrap}>
