@@ -1,3 +1,5 @@
+import type { User } from "types/User";
+
 export type AuthActionEnum =
   | "REGISTER_SUCCESS"
   | "REGISTER_FAIL"
@@ -7,27 +9,27 @@ export type AuthActionEnum =
 
 export interface RegisterSuccessAction {
   type: "REGISTER_SUCCESS";
-  payload: any;
+  payload: null;
 }
 
 export interface RegisterFailAction {
   type: "REGISTER_FAIL";
-  payload: any;
+  payload: null;
 }
 
 export interface LoginSuccessAction {
   type: "LOGIN_SUCCESS";
-  payload: any;
+  payload: User;
 }
 
 export interface LoginFailAction {
   type: "LOGIN_FAIL";
-  payload: any;
+  payload: null;
 }
 
 export interface LogoutAction {
   type: "LOGOUT";
-  payload: any;
+  payload: null;
 }
 
 export type AuthAction =

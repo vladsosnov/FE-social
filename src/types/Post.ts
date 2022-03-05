@@ -13,5 +13,5 @@ export type Post = {
   image: number;
   likes: Array<Like>;
   comments: Array<Comment>;
-  createdAt: any;
+  createdAt: string;
 };

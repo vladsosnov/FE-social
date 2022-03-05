@@ -1,5 +1,6 @@
 import moment from "moment";
 import type { FC } from "react";
+import type { unitOfTime } from "moment";
 import type { Message as MessageType } from "types/Message";
 import styles from "./message.module.css";
 
@@ -22,7 +23,9 @@ export const Message: FC<MessageProps> = ({ message, own }) => {
         <p className={styles.messageText}>{message.text}</p>
       </div>
       <div className={styles.messageBottom}>
-        {moment().startOf(message.createdAt).fromNow()}
+        {moment()
+          .startOf(message.createdAt as unitOfTime.StartOf)
+          .fromNow()}
       </div>
     </div>
   );

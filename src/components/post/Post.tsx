@@ -12,6 +12,7 @@ import {
 } from "assets/icons";
 import { useTypedSelector } from "hooks/useSelector";
 import type { User } from "types/User";
+import type { unitOfTime } from "moment";
 import type { Post as PostType } from "types/Post";
 import type { FC } from "react";
 import styles from "./post.module.css";
@@ -68,7 +69,9 @@ export const Post: FC<PostProps> = ({ post }) => {
             Company • Sporting Goods
           </span>
           <span className={styles.postPublishDate}>
-            {moment().startOf(post.createdAt).fromNow()}
+            {moment()
+              .startOf(post.createdAt as unitOfTime.StartOf)
+              .fromNow()}
           </span>
         </div>
       </Link>

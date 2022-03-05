@@ -2,12 +2,12 @@ export type MessageActionEnum = "SET_MESSAGE" | "CLEAR_MESSAGE";
 
 export interface SetMessageAction {
   type: "SET_MESSAGE";
-  payload: any;
+  payload: string;
 }
 
 export interface ClearMessageAction {
   type: "CLEAR_MESSAGE";
-  payload: any;
+  payload: null;
 }
 
 export type MessageAction = SetMessageAction | ClearMessageAction;

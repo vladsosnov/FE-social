@@ -1,10 +1,3 @@
-import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  LOGOUT,
-} from "store/actions/types";
 import type { AuthAction } from "./types";
 
 const user = JSON.parse(localStorage.getItem("user") || JSON.stringify(null));
@@ -17,29 +10,30 @@ export const authReducer = (state = initialState, action: AuthAction) => {
   const { type, payload } = action;
 
   switch (type) {
-    case REGISTER_SUCCESS:
+    case "REGISTER_SUCCESS":
       return {
         ...state,
         isLoggedIn: false,
       };
-    case REGISTER_FAIL:
+    case "REGISTER_FAIL":
       return {
         ...state,
         isLoggedIn: false,
       };
-    case LOGIN_SUCCESS:
+    case "LOGIN_SUCCESS":
+      console.log("payload", payload);
       return {
         ...state,
         isLoggedIn: true,
-        user: payload.user,
+        user: payload,
       };
-    case LOGIN_FAIL:
+    case "LOGIN_FAIL":
       return {
         ...state,
         isLoggedIn: false,
         user: null,
       };
-    case LOGOUT:
+    case "LOGOUT":
       return {
         ...state,
         isLoggedIn: false,

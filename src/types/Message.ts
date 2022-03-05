@@ -2,5 +2,5 @@ export type Message = {
   conversationId: string;
   sender: string;
   text: string;
-  createdAt: any;
+  createdAt: string;
 };
