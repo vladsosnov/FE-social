@@ -43,6 +43,10 @@
   cursor: pointer;
 }
 
+.shareButton:disabled {
+  cursor: not-allowed;
+}
+
 .shareImgContainer {
   position: relative;
   padding: 0 20px 10px;

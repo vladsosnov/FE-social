@@ -1,17 +1,13 @@
 import { useRef, useState } from "react";
 import { UserAvatar } from "components/shared";
-import { API } from "hooks/useApi";
 import { PhotoIcon, VideoIcon, EventIcon, ArticleIcon } from "assets/icons";
 import { useTypedSelector } from "hooks/useSelector";
-import type { FC } from "react";
+import PostService from "services/post";
+import ImageService from "services/image";
 import type React from "react";
+import type { FC } from "react";
+import type { NewPost } from "types/Post";
 import styles from "./share.module.css";
-
-interface NewPost {
-  userId: string;
-  desc: string;
-  image?: string;
-}
 
 export const Share: FC = () => {
   const { user } = useTypedSelector((store) => store.auth);
@@ -20,11 +16,14 @@ export const Share: FC = () => {
 
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const newPost: NewPost = {
-      userId: user._id,
-      desc: desc.current?.value || "",
-    };
-    if (file) {
+    const description = desc.current?.value || "";
+
+    if (file && description) {
+      const newPost: NewPost = {
+        userId: user._id,
+        desc: description,
+      };
+
       const data = new FormData();
       const fileName = Date.now() + file.name;
       data.append("name", fileName);
@@ -32,17 +31,11 @@ export const Share: FC = () => {
       newPost.image = fileName;
 
       try {
-        await API.post("/upload", data);
-        console.log("data", data);
+        await ImageService.createPost(data);
+        await PostService.createPost(newPost);
       } catch (err) {
         console.log("err", err);
       }
-    }
-    try {
-      await API.post("/posts", newPost);
-      window.location.reload();
-    } catch (err) {
-      console.log("err", err);
     }
   };
 

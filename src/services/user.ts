@@ -1,5 +1,4 @@
 import { API } from "hooks/useApi";
-import authHeader from "./auth-header";
 
 class UserService {
   getUser(id: string) {
