@@ -45,18 +45,22 @@
   border-radius: 10px;
 }
 
-.loginInput {
+.authInput {
   padding: 8px;
   font-size: 18px;
   border: 1px solid gray;
   border-radius: 10px;
 }
 
-.loginInput:not(:last-child) {
-  margin-bottom: 12px;
+.authInput:not(:first-child) {
+  margin-top: 12px;
 }
 
-.loginInput:focus {
+.authInputError {
+  margin-bottom: 4px;
+}
+
+.authInput:focus {
   outline: none;
 }
 

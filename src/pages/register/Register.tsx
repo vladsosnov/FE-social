@@ -1,81 +1,88 @@
-import { useRef } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthLayout } from "layouts/AuthLayout";
-import { API } from "hooks/useApi";
-import type React from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 import styles from "layouts/AuthLayout/authLayout.module.css";
+import { useActions } from "hooks/useActions";
 
 export const Register = () => {
-  const username = useRef<HTMLInputElement>(null);
-  const position = useRef<HTMLInputElement>(null);
-  const email = useRef<HTMLInputElement>(null);
-  const password = useRef<HTMLInputElement>(null);
-  const passwordAgain = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const formSchema = Yup.object().shape({
+    username: Yup.string()
+      .required("Username is required")
+      .min(8, "Username length should be at least 8 characters"),
+    position: Yup.string().required("Position is required"),
+    email: Yup.string().required("Email is required").email(),
+    password: Yup.string()
+      .required("Password is required")
+      .min(8, "Password length should be at least 8 characters"),
+  });
+  const validationOpt = { resolver: yupResolver(formSchema) };
+  const { register, handleSubmit, formState } = useForm(validationOpt);
+  const { errors } = formState;
+  const { register: registerAction } = useActions();
+  const [isFetching, setIsFetching] = useState(false);
 
-  const handleSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-
-    if (password.current?.value !== passwordAgain.current?.value) {
-      passwordAgain.current?.setCustomValidity("Passwords don't match");
-      return;
-    }
-
+  const onSubmit = async (data: Record<string, string>) => {
+    setIsFetching(true);
     const user = {
-      username: username.current?.value,
-      position: position.current?.value,
-      email: email.current?.value,
-      password: password.current?.value,
+      username: data.username,
+      position: data.position,
+      email: data.email,
+      password: data.password,
     };
 
-    try {
-      await API.post("/auth/register", user);
-      navigate("/");
-    } catch (err) {
-      console.log("err", err);
+    const registerResult = await registerAction(user);
+
+    if (!registerResult) {
+      return setIsFetching(false);
     }
+
+    navigate("/");
   };
 
   return (
     <AuthLayout>
-      <form className={styles.loginBox} onSubmit={handleSubmit}>
+      <form className={styles.loginBox} onSubmit={handleSubmit(onSubmit)}>
         <input
+          {...register("username", {
+            required: true,
+          })}
           placeholder="Username"
-          className={styles.loginInput}
-          ref={username}
-          required
+          className={styles.authInput}
         />
+        {errors.username && <p>Please check the username</p>}
         <input
+          {...register("position", {
+            required: true,
+          })}
           placeholder="Position"
-          className={styles.loginInput}
-          ref={position}
-          required
+          className={styles.authInput}
         />
+        {errors.position && <p>Please check the position</p>}
         <input
+          {...register("email", {
+            required: true,
+          })}
           placeholder="Email"
-          className={styles.loginInput}
-          ref={email}
-          required
+          className={styles.authInput}
           type="email"
         />
+        {errors.email && <p>Please check the email</p>}
         <input
+          {...register("password", {
+            required: true,
+          })}
           placeholder="Password"
-          className={styles.loginInput}
-          ref={password}
-          required
-          type="password"
-          minLength={6}
-        />
-        <input
-          placeholder="Password Again"
-          className={styles.loginInput}
-          ref={passwordAgain}
-          required
+          className={styles.authInput}
           type="password"
         />
+        {errors.password && <p>Please check the password</p>}
         <div className={styles.authWrapper}>
           <button className={styles.loginButton} type="submit">
-            Sign Up
+            {isFetching ? "Loading" : "Sign Up"}
           </button>
           <button className={styles.loginRegisterButton}>
             <Link to="/login">Log into Account</Link>

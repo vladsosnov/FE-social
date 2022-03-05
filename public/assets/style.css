@@ -130,6 +130,11 @@ table {
   border-spacing: 0;
 }
 
+.errorValidationText {
+  color: var(--red);
+  font-size: 14px;
+}
+
 :root {
   --black: #000;
   --black-a90: rgba(0, 0, 0, 0.9);
@@ -141,6 +146,7 @@ table {
   --white: #fff;
   --cool-gray-20: #eef3f8;
   --blue: #0073b1;
+  --red: rgb(255, 37, 37);
   --main-color: var(--black);
   --main-background-color: var(--white);
   --shadow-lined: 0 0 0 1px var(--black-a08);
