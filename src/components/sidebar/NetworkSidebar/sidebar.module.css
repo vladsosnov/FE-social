@@ -19,11 +19,12 @@
   display: flex;
 }
 
-.sidebarItem {
+.sidebarItemLink {
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: var(--black-a60);
+  text-decoration: none;
 }
 
 .sidebarItem:not(:first-child) {

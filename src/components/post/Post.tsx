@@ -72,13 +72,9 @@ export const Post: FC<PostProps> = ({ post }) => {
           </span>
         </div>
       </Link>
-      <div
-        className={styles.postControlMenu}
-        onClick={moreVertHandle}
-        aria-hidden="true"
-      >
+      <button className={styles.postControlMenu} onClick={moreVertHandle}>
         <MoreVertIcon width={21} />
-      </div>
+      </button>
       <div className={styles.postContent}>
         <span className={styles.postText}>{post?.desc}</span>
       </div>

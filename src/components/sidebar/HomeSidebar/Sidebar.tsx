@@ -3,6 +3,7 @@ import { SidebarHeadIcon } from "assets/icons";
 import styles from "./sidebar.module.css";
 import type { FC } from "react";
 import type { User } from "types/User";
+import { Link } from "react-router-dom";
 
 interface SidebarProps {
   user: User;
@@ -25,20 +26,27 @@ export const Sidebar: FC<SidebarProps> = ({ user }) => {
       <div className={styles.sidebarStatistics}>
         <h2 className={styles.sidebarStatisticsTitle}>Statistics</h2>
         <ul className={styles.sidebarListItems}>
-          <li className={styles.sidebarListItem}>
-            Followers
-            <span>{user.followers.length || 0}</span>
+          <li>
+            <Link to="/" className={styles.sidebarListItem}>
+              Followers
+              <span>{user.followers.length || 0}</span>
+            </Link>
           </li>
-          <li className={styles.sidebarListItem}>
-            Followings
-            <span>{user.followings.length || 0}</span>
+          <li>
+            <Link to="/" className={styles.sidebarListItem}>
+              Followings
+              <span>{user.followings.length || 0}</span>
+            </Link>
           </li>
-          <li className={styles.sidebarListItem}>
-            Your posts likes
-            <span>0</span>
+          <li>
+            <Link to="/" className={styles.sidebarListItem}>
+              Your posts likes <span>0</span>
+            </Link>
           </li>
-          <li className={styles.sidebarListItem}>
-            Liked posts <span>0</span>
+          <li>
+            <Link to="/" className={styles.sidebarListItem}>
+              Liked posts <span>0</span>
+            </Link>
           </li>
         </ul>
       </div>
@@ -48,14 +56,20 @@ export const Sidebar: FC<SidebarProps> = ({ user }) => {
       <div className={styles.sidebarGroups}>
         <h2 className={styles.sidebarGroupsTitle}>Groups</h2>
         <ul className={styles.sidebarListItems}>
-          <li className={styles.sidebarListItem}>Front End Developer Group</li>
-          <li className={styles.sidebarListItem}>
-            Front-end Developer Network
+          <li>
+            <Link to="/" className={styles.sidebarListItem}>
+              Front End Developer Group
+            </Link>
+          </li>
+          <li>
+            <Link to="/" className={styles.sidebarListItem}>
+              Front-end Developer Network
+            </Link>
           </li>
         </ul>
-        <a href="/" className={styles.sidebarListItem}>
+        <Link to="/" className={styles.sidebarListItem}>
           See all
-        </a>
+        </Link>
       </div>
     </div>
   );

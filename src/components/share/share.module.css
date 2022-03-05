@@ -23,7 +23,7 @@
 }
 
 .shareInput:focus {
-  outline: none;
+  border: 2px solid var(--blue);
 }
 
 .shareBottom {
