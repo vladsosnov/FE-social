@@ -70,7 +70,7 @@
   margin-top: 12px;
 }
 
-.loginButton {
+.loginBtn {
   align-self: center;
   margin-right: 8px;
   padding: 12px;
@@ -83,11 +83,11 @@
   cursor: pointer;
 }
 
-.loginButton:focus {
+.loginBtn:focus {
   outline: none;
 }
 
-.loginButton:disabled {
+.loginBtn:disabled {
   cursor: not-allowed;
 }
 
@@ -96,7 +96,7 @@
   text-align: center;
 }
 
-.loginRegisterButton {
+.loginRegisterBtn {
   align-self: center;
   padding: 12px;
   font-weight: 500;
@@ -107,7 +107,7 @@
   cursor: pointer;
 }
 
-.loginRegisterButton a {
+.loginRegisterBtn a {
   color: white;
   text-decoration: none;
 }

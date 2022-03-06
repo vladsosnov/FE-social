@@ -81,10 +81,10 @@ export const Register = () => {
         />
         {errors.password && <p>Please check the password</p>}
         <div className={styles.authWrapper}>
-          <button className={styles.loginButton} type="submit">
+          <button className={styles.loginBtn} type="submit">
             {isFetching ? "Loading" : "Sign Up"}
           </button>
-          <button className={styles.loginRegisterButton}>
+          <button className={styles.loginRegisterBtn}>
             <Link to="/login">Log into Account</Link>
           </button>
         </div>

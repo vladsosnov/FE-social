@@ -140,7 +140,7 @@ export const Messenger = () => {
                     value={newMessage}
                   ></textarea>
                   <button
-                    className={styles.chatSubmitButton}
+                    className={styles.chatSubmitBtn}
                     onClick={handleSubmit}
                   >
                     Send

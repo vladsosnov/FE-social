@@ -59,7 +59,7 @@ export const Aside: FC<AsideProps> = ({ user }) => {
                     </p>
                   </a>
                 </div>
-                <button className={styles.asideFeedRecommendationFollowButton}>
+                <button className={styles.asideFeedRecommendationFollowBtn}>
                   Follow
                   <PlusIcon
                     customClassName={styles.asideFeedRecommendationFollowIcon}

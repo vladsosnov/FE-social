@@ -55,13 +55,13 @@ export const Login = () => {
         <div className="errorValidationText">{errors.password?.message}</div>
         <div className={styles.authWrapper}>
           <button
-            className={styles.loginButton}
+            className={styles.loginBtn}
             disabled={isFetching}
             type="submit"
           >
             {isFetching ? "Loading" : "Log In"}
           </button>
-          <button className={styles.loginRegisterButton}>
+          <button className={styles.loginRegisterBtn}>
             <Link to="/register">
               {isFetching ? "Loading" : "Create a New Account"}
             </Link>

@@ -59,7 +59,7 @@
   font-size: 12px;
 }
 
-.asideFeedRecommendationFollowButton {
+.asideFeedRecommendationFollowBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -75,7 +75,7 @@
   transition: all 0.16s ease-in;
 }
 
-.asideFeedRecommendationFollowButton:hover {
+.asideFeedRecommendationFollowBtn:hover {
   background-color: var(--black-a08);
   border: 1px solid var(--black);
 }

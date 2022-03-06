@@ -108,7 +108,7 @@
   column-gap: 0.4rem;
 }
 
-.postSocialActionsButton {
+.postSocialActionsBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,7 +121,7 @@
   transition: all 0.16s ease-in;
 }
 
-.postSocialActionsButton:hover {
+.postSocialActionsBtn:hover {
   background-color: var(--black-a08);
   border-radius: 4px;
 }

@@ -98,40 +98,28 @@ export const Post: FC<PostProps> = ({ post }) => {
           </span>
         </div>
         <div className={styles.postSocialActionBar}>
-          <button
-            className={styles.postSocialActionsButton}
-            onClick={likeHandler}
-          >
+          <button className={styles.postSocialActionsBtn} onClick={likeHandler}>
             <LikeIcon
               customClassName={styles.postSocialActionsIcon}
               width={21}
             />
             Like
           </button>
-          <button
-            className={styles.postSocialActionsButton}
-            onClick={likeHandler}
-          >
+          <button className={styles.postSocialActionsBtn} onClick={likeHandler}>
             <CommentIcon
               customClassName={styles.postSocialActionsIcon}
               width={21}
             />
             Comment
           </button>
-          <button
-            className={styles.postSocialActionsButton}
-            onClick={likeHandler}
-          >
+          <button className={styles.postSocialActionsBtn} onClick={likeHandler}>
             <ShareIcon
               customClassName={styles.postSocialActionsIcon}
               width={21}
             />
             Share
           </button>
-          <button
-            className={styles.postSocialActionsButton}
-            onClick={likeHandler}
-          >
+          <button className={styles.postSocialActionsBtn} onClick={likeHandler}>
             <SendIcon
               customClassName={styles.postSocialActionsIcon}
               width={21}

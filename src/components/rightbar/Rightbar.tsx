@@ -53,7 +53,7 @@ export const Rightbar: FC<RightbarProps> = ({ user }) => {
     return (
       <>
         {user?.username !== currentUser?.username && (
-          <button className={styles.rightbarFollowButton} onClick={handleClick}>
+          <button className={styles.rightbarFollowBtn} onClick={handleClick}>
             {followed ? "Unfollow" : "Follow"}
           </button>
         )}

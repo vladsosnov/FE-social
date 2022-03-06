@@ -13,10 +13,10 @@ export const Share: FC = () => {
   const { user } = useTypedSelector((store) => store.auth);
   const desc = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
+  const [description, setDescription] = useState(desc.current?.value || "");
 
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const description = desc.current?.value || "";
 
     if (file && description) {
       const newPost: NewPost = {
@@ -45,6 +45,10 @@ export const Share: FC = () => {
     }
   };
 
+  const descChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDescription(e.target.value);
+  };
+
   return (
     <div className={styles.share}>
       <div className={styles.shareTop}>
@@ -57,6 +61,7 @@ export const Share: FC = () => {
           placeholder="Start a post"
           className={styles.shareInput}
           ref={desc}
+          onChange={descChangeHandler}
         />
       </div>
       {file && (
@@ -64,14 +69,19 @@ export const Share: FC = () => {
           <img
             className={styles.shareImg}
             src={URL.createObjectURL(file)}
-            alt=""
+            alt="for sharing"
           />
-          <button onClick={() => setFile(null)}>Cancel</button>
+          <button
+            className={styles.shareCancelBtn}
+            onClick={() => setFile(null)}
+          >
+            Cancel
+          </button>
         </div>
       )}
       <form className={styles.shareBottom} onSubmit={submitHandler}>
         <div className={styles.shareActionBar}>
-          <label htmlFor="file" className={styles.shareActionsButton}>
+          <label htmlFor="file" className={styles.shareActionsBtn}>
             <PhotoIcon customClassName={styles.shareActionsIcon} width={21} />
             Photo
             <input
@@ -82,20 +92,24 @@ export const Share: FC = () => {
               onChange={fileChangeHandler}
             />
           </label>
-          <button className={styles.shareActionsButton}>
+          <button className={styles.shareActionsBtn}>
             <VideoIcon customClassName={styles.shareActionsIcon} width={21} />
             Video
           </button>
-          <button className={styles.shareActionsButton}>
+          <button className={styles.shareActionsBtn}>
             <EventIcon customClassName={styles.shareActionsIcon} width={21} />
             Event
           </button>
-          <button className={styles.shareActionsButton}>
+          <button className={styles.shareActionsBtn}>
             <ArticleIcon customClassName={styles.shareActionsIcon} width={21} />
             Write article
           </button>
         </div>
-        <button className={styles.shareButton} type="submit">
+        <button
+          disabled={!file || !description}
+          className={styles.shareBtn}
+          type="submit"
+        >
           Share
         </button>
       </form>
