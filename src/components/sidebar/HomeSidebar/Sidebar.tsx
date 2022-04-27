@@ -4,7 +4,6 @@ import styles from "./sidebar.module.css";
 import type { FC } from "react";
 import type { User } from "types/User";
 import { Link } from "react-router-dom";
-
 interface SidebarProps {
   user: User;
 }

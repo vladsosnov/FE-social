@@ -1,7 +1,7 @@
 import { API } from "hooks/useApi";
 import type { Auth } from "types/Auth";
 
-class AuthService {
+class Service {
   async login({ email, password }: Auth) {
     const res = await API.post("auth/login", { email, password });
     localStorage.setItem("user", JSON.stringify(res.data));
@@ -17,4 +17,6 @@ class AuthService {
   }
 }
 
-export default new AuthService();
+const AuthService = new Service();
+
+export { AuthService };

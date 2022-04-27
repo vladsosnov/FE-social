@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Post } from "components/post/Post";
-import { API } from "hooks/useApi";
 import { useTypedSelector } from "hooks/useSelector";
+import { PostService } from "services/post";
 import type { FC } from "react";
 import type { Post as PostType } from "types/Post";
 import styles from "./feed.module.css";
-
 interface FeedProps {
   username: string;
 }
@@ -16,17 +15,22 @@ export const Feed: FC<FeedProps> = ({ username }) => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = username
-        ? await API.get(`posts/profile/${username}`)
-        : await API.get(`posts/timeline/${user._id}`);
-      setPosts(
-        res.data.sort((p1: PostType, p2: PostType) => {
-          const createdAtDateP1 = new Date(p2.createdAt);
-          const createdAtDateP2 = new Date(p1.createdAt);
+      try {
+        const res = username
+          ? await PostService.getProfilePosts(username)
+          : await PostService.getTimelinePosts(user._id);
 
-          return createdAtDateP1.valueOf() - createdAtDateP2.valueOf();
-        }),
-      );
+        setPosts(
+          res.data.sort((p1: PostType, p2: PostType) => {
+            return (
+              new Date(p2.createdAt).valueOf() -
+              new Date(p1.createdAt).valueOf()
+            );
+          }),
+        );
+      } catch (err) {
+        console.log("err", err);
+      }
     };
     fetchPosts();
   }, [username, user._id]);

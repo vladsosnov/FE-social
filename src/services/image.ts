@@ -1,9 +1,11 @@
 import { API } from "hooks/useApi";
 
-class ImageService {
-  createPost(data: FormData) {
+class Service {
+  uploadPostImage(data: FormData) {
     return API.post("/upload", data);
   }
 }
 
-export default new ImageService();
+const ImageService = new Service();
+
+export { ImageService };

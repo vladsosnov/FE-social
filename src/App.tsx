@@ -1,3 +1,4 @@
+import { ParentComponent } from "components/test";
 import { useTypedSelector } from "hooks/useSelector";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Home, Login, Profile, Register, Messenger, Network } from "./pages";
@@ -8,6 +9,7 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/test" element={ParentComponent} />
         <Route path="/" element={isLoggedIn ? <Home /> : <Login />} />
         <Route
           path="/login"

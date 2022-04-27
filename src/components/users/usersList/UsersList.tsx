@@ -2,7 +2,6 @@ import type { FC } from "react";
 import type { User } from "types/User";
 import { UserItem } from "../userItem";
 import styles from "./usersList.module.css";
-
 interface UsersListProps {
   users: User[];
 }

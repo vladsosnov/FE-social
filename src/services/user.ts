@@ -1,13 +1,20 @@
 import { API } from "hooks/useApi";
 
-class UserService {
+class Service {
   getUser(id: string) {
-    return API.get(`/user?userId=${id}`);
+    return API.get(`/users?userId=${id}`);
   }
-
-  // getAdminBoard() {
-  //   return axios.get(API_URL + "admin", { headers: authHeader() });
-  // }
+  getUserFriends(id: string) {
+    return API.get("/users/friends/" + id);
+  }
+  followUser(id: string, userId: string) {
+    return API.put(`/users/${id}/follow`, { userId });
+  }
+  unfollowUser(id: string, userId: string) {
+    return API.put(`/users/${id}/unfollow`, { userId });
+  }
 }
 
-export default new UserService();
+const UserService = new Service();
+
+export { UserService };

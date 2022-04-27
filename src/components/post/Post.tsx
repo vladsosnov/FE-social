@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserAvatar } from "components/shared";
-import { API } from "hooks/useApi";
 import moment from "moment";
 import {
   MoreVertIcon,
@@ -16,7 +15,8 @@ import type { unitOfTime } from "moment";
 import type { Post as PostType } from "types/Post";
 import type { FC } from "react";
 import styles from "./post.module.css";
-
+import { UserService } from "services/user";
+import { PostService } from "services/post";
 interface PostProps {
   post: PostType;
 }
@@ -25,7 +25,7 @@ export const Post: FC<PostProps> = ({ post }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User>({} as User);
   const { userId } = post;
   const { user: currentUser } = useTypedSelector((store) => store.auth);
 
@@ -35,15 +35,19 @@ export const Post: FC<PostProps> = ({ post }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await API.get(`users?userId=${currentUser._id}`);
-      setUser(res.data);
+      try {
+        const res = await UserService.getUser(currentUser._id);
+        setUser(res.data);
+      } catch (err) {
+        console.log("err", err);
+      }
     };
     fetchUser();
   }, [userId, currentUser._id]);
 
   const likeHandler = () => {
     try {
-      API.put(`/posts/${post._id}/like`, { userId: user?._id });
+      PostService.likePost(post._id, user._id);
     } catch (err) {
       console.log("err", err);
     }
@@ -57,14 +61,14 @@ export const Post: FC<PostProps> = ({ post }) => {
 
   return (
     <div className={styles.post}>
-      <Link to={`profile/${user?.username}`} className={styles.postActor}>
+      <Link to={`profile/${user.username}`} className={styles.postActor}>
         <UserAvatar
-          picture={user?.profilePicture || ""}
-          username={user?.username || ""}
+          picture={user.profilePicture || ""}
+          username={user.username || ""}
           size="m"
         />
         <div className={styles.postActorMeta}>
-          <span className={styles.postUsername}>{user?.username}</span>
+          <span className={styles.postUsername}>{user.username}</span>
           <span className={styles.postUserPosition}>
             Company • Sporting Goods
           </span>

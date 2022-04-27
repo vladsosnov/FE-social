@@ -4,7 +4,6 @@ import noCompany from "assets/images/shared/noCompany.jpeg";
 import styles from "./userItem.module.css";
 import type { User } from "types/User";
 import type { FC } from "react";
-
 interface UserItemProps {
   user: User;
 }

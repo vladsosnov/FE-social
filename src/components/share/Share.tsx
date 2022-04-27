@@ -2,8 +2,8 @@ import { useRef, useState } from "react";
 import { UserAvatar } from "components/shared";
 import { PhotoIcon, VideoIcon, EventIcon, ArticleIcon } from "assets/icons";
 import { useTypedSelector } from "hooks/useSelector";
-import PostService from "services/post";
-import ImageService from "services/image";
+import { PostService } from "services/post";
+import { ImageService } from "services/image";
 import type React from "react";
 import type { FC } from "react";
 import type { NewPost } from "types/Post";
@@ -31,7 +31,7 @@ export const Share: FC = () => {
       newPost.image = fileName;
 
       try {
-        await ImageService.createPost(data);
+        await ImageService.uploadPostImage(data);
         await PostService.createPost(newPost);
       } catch (err) {
         console.log("err", err);

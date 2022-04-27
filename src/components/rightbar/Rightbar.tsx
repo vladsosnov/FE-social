@@ -5,7 +5,7 @@ import { useTypedSelector } from "hooks/useSelector";
 import type { FC } from "react";
 import type { Follower, User } from "types/User";
 import styles from "./rightbar.module.css";
-
+import { UserService } from "services/user";
 interface RightbarProps {
   user: User;
 }
@@ -15,38 +15,42 @@ export const Rightbar: FC<RightbarProps> = ({ user }) => {
   const [friends, setFriends] = useState<Follower[]>([]);
   const { user: currentUser } = useTypedSelector((store) => store.auth);
   const [followed, setFollowed] = useState(
-    currentUser.followings.includes(user?.id),
+    currentUser.followings.includes(user.id),
   );
 
   useEffect(() => {
-    const getFriends = async () => {
+    const fetchFriends = async () => {
       try {
-        const friendList = await API.get("/users/friends/" + user?._id);
+        const friendList = await UserService.getUserFriends(user._id);
         setFriends(friendList.data);
       } catch (err) {
         console.log(err);
       }
     };
-    getFriends();
+    fetchFriends();
   }, [user]);
 
   const handleClick = async () => {
     try {
       if (followed) {
-        await API.put(`/users/${user._id}/unfollow`, {
-          userId: currentUser._id,
-        });
+        await UserService.unfollowUser(user.id, currentUser._id);
         //dispatch({ type: "UNFOLLOW", payload: user._id });
       } else {
-        await API.put(`/users/${user._id}/follow`, {
-          userId: currentUser._id,
-        });
+        await UserService.followUser(user.id, currentUser._id);
         //dispatch({ type: "FOLLOW", payload: user._id });
       }
       setFollowed(!followed);
     } catch (err) {
       console.log("err", err);
     }
+  };
+
+  const userRelationships = () => {
+    return user.relationship === 1
+      ? "Single"
+      : user.relationship === 2
+      ? "Married"
+      : "-";
   };
 
   const HomeRightbar = () => {
@@ -77,11 +81,7 @@ export const Rightbar: FC<RightbarProps> = ({ user }) => {
           <div className={styles.rightbarInfoItem}>
             <span className={styles.rightbarInfoKey}>Relationship:</span>
             <span className={styles.rightbarInfoValue}>
-              {user.relationship === 1
-                ? "Single"
-                : user.relationship === 2
-                ? "Married"
-                : "-"}
+              {userRelationships()}
             </span>
           </div>
         </div>

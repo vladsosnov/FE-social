@@ -1,5 +1,5 @@
-import type { User } from "./../../types/User";
-import AuthService from "services/auth";
+import { AuthService } from "services/auth";
+import type { User } from "types/User";
 import type { AppDispatch } from "store";
 import type { Auth } from "types/Auth";
 
