@@ -45,7 +45,7 @@ export const Header: FC = () => {
                 to="/"
               >
                 <HomeIcon width={21} />
-                Home
+                Feed
               </NavLink>
             </li>
             <li className={styles.headerNavPrimaryItem}>

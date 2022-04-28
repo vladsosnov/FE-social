@@ -1,7 +1,12 @@
-import { ParentComponent } from "components/test";
 import { useTypedSelector } from "hooks/useSelector";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Home, Login, Profile, Register, Messenger, Network } from "./pages";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  NavLink,
+} from "react-router-dom";
+import { Feed, Login, Profile, Register, Messenger, Network } from "./pages";
 
 export const App = () => {
   const { isLoggedIn } = useTypedSelector((store) => store.auth);
@@ -9,8 +14,8 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/test" element={ParentComponent} />
-        <Route path="/" element={isLoggedIn ? <Home /> : <Login />} />
+        <Route path="/" element={<NavLink to="/feed">Home page</NavLink>} />
+        <Route path="/feed" element={isLoggedIn ? <Feed /> : <Login />} />
         <Route
           path="/login"
           element={isLoggedIn ? <Navigate to="/" /> : <Login />}

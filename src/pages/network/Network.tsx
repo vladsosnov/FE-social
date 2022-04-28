@@ -14,6 +14,7 @@ export const Network = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       const res = await API.get(`/users/${user._id}/all`);
+      console.log("res", res);
       setUsers(res.data.users);
     };
     fetchUsers();

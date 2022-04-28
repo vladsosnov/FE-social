@@ -2,35 +2,15 @@ import { UserAvatar } from "components/shared";
 import { Footer } from "components/footer";
 import { ArrowRightIcon, PlusIcon } from "assets/icons";
 import type { FC } from "react";
-import type { User } from "types/User";
+import type { Recommendations, User } from "types/User";
 import styles from "./aside.module.css";
 
 interface AsideProps {
   user: User | null;
+  recommendations: Recommendations[];
 }
 
-export const Aside: FC<AsideProps> = ({ user }) => {
-  const recommendations = [
-    {
-      id: 0,
-      picture: "",
-      name: "Bill Gates",
-      position: "Co-chair, Bill & Melinda Gates Foundation",
-    },
-    {
-      id: 1,
-      picture: "",
-      name: "Nike",
-      position: "Company • Sporting Goods",
-    },
-    {
-      id: 2,
-      picture: "",
-      name: "GitHub",
-      position: "Company • Computer Software",
-    },
-  ];
-
+export const Aside: FC<AsideProps> = ({ user, recommendations }) => {
   return (
     <div className={styles.aside}>
       <div className={styles.asideFeed}>
@@ -43,8 +23,8 @@ export const Aside: FC<AsideProps> = ({ user }) => {
             >
               <a href="/" className={styles.asideFeedRecommendationAvatar}>
                 <UserAvatar
-                  picture={recommendation.picture}
-                  username={recommendation.name}
+                  picture={recommendation.profilePicture}
+                  username={recommendation.username}
                   size="m"
                 />
               </a>
@@ -52,7 +32,7 @@ export const Aside: FC<AsideProps> = ({ user }) => {
                 <div className={styles.asideFeedRecommendationHead}>
                   <a href="/" className={styles.asideFeedRecommendationLink}>
                     <p className={styles.asideFeedRecommendationName}>
-                      {recommendation.name}
+                      {recommendation.username}
                     </p>
                     <p className={styles.asideFeedRecommendationSubText}>
                       {recommendation.position}

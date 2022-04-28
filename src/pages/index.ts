@@ -1,4 +1,4 @@
-export { Home } from "./home/Home";
+export { Feed } from "./feed/Feed";
 export { Register } from "./register";
 export { Login } from "./login";
 export { Messenger } from "./messenger";

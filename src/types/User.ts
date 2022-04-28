@@ -35,6 +35,13 @@ export type Education = {
   city: string;
 };
 
+export type Recommendations = {
+  id: string;
+  profilePicture: string;
+  username: string;
+  position: string;
+};
+
 export type User = {
   _id: string;
   id: string;
