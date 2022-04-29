@@ -15,7 +15,7 @@ import type { FC } from "react";
 import styles from "./header.module.css";
 
 export const Header: FC = () => {
-  const { user } = useTypedSelector((store) => store.auth);
+  const { user } = useTypedSelector((store) => store.user);
   const { logout } = useActions();
 
   return (

@@ -39,12 +39,8 @@ export const Sidebar: FC<SidebarProps> = ({ user }) => {
           </li>
           <li>
             <Link to="/" className={styles.sidebarListItem}>
-              Your posts likes <span>0</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className={styles.sidebarListItem}>
-              Liked posts <span>0</span>
+              Liked posts
+              <span>{user.likedPosts.length || 0}</span>
             </Link>
           </li>
         </ul>

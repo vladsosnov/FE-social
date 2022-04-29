@@ -1,3 +1,5 @@
+import type { Post } from "./Post";
+
 export type Follower = {
   userId: string;
   username: string;
@@ -63,4 +65,5 @@ export type User = {
   languages: Array<Language>;
   educations: Array<Education>;
   about: string;
+  likedPosts: Array<Post>;
 };

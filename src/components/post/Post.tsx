@@ -17,20 +17,21 @@ import type { FC } from "react";
 import styles from "./post.module.css";
 import { UserService } from "services/user";
 import { PostService } from "services/post";
+import { useActions } from "hooks/useActions";
 interface PostProps {
   post: PostType;
 }
 
 export const Post: FC<PostProps> = ({ post }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const { likePost } = useActions();
   const [like, setLike] = useState(post.likes.length);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLike] = useState(false);
   const [user, setUser] = useState<User>({} as User);
-  const { userId } = post;
-  const { user: currentUser } = useTypedSelector((store) => store.auth);
+  const { user: currentUser } = useTypedSelector((store) => store.user);
 
   useEffect(() => {
-    setIsLiked(post.likes.includes(currentUser._id));
+    setIsLike(post.likes.includes(currentUser._id));
   }, [currentUser._id, post.likes]);
 
   useEffect(() => {
@@ -43,16 +44,17 @@ export const Post: FC<PostProps> = ({ post }) => {
       }
     };
     fetchUser();
-  }, [userId, currentUser._id]);
+  }, [currentUser._id]);
 
   const likeHandler = () => {
     try {
       PostService.likePost(post._id, user._id);
+      likePost(user._id);
     } catch (err) {
       console.log("err", err);
     }
     setLike(isLiked ? like - 1 : like + 1);
-    setIsLiked(!isLiked);
+    setIsLike(!isLiked);
   };
 
   const moreVertHandle = () => {

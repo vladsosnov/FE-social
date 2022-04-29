@@ -21,7 +21,6 @@ export const authReducer = (state = initialState, action: AuthAction) => {
         isLoggedIn: false,
       };
     case "LOGIN_SUCCESS":
-      console.log("payload", payload);
       return {
         ...state,
         isLoggedIn: true,

@@ -11,7 +11,7 @@ import type { Recommendations } from "types/User";
 import type { Post } from "types/Post";
 
 export const Feed = () => {
-  const { user } = useTypedSelector((store) => store.auth);
+  const { user } = useTypedSelector((store) => store.user);
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -27,7 +27,6 @@ export const Feed = () => {
             );
           }),
         );
-        console.log("res", res);
       } catch (err) {
         console.log("Error in Feed fetchPosts", err);
       }

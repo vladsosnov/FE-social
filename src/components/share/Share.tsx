@@ -10,7 +10,7 @@ import type { NewPost } from "types/Post";
 import styles from "./share.module.css";
 
 export const Share: FC = () => {
-  const { user } = useTypedSelector((store) => store.auth);
+  const { user } = useTypedSelector((store) => store.user);
   const desc = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [description, setDescription] = useState(desc.current?.value || "");

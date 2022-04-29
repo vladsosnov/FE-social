@@ -9,12 +9,11 @@ import styles from "./network.module.css";
 
 export const Network = () => {
   const [users, setUsers] = useState<User[]>([]);
-  const { user } = useTypedSelector((store) => store.auth);
+  const { user } = useTypedSelector((store) => store.user);
 
   useEffect(() => {
     const fetchUsers = async () => {
       const res = await API.get(`/users/${user._id}/all`);
-      console.log("res", res);
       setUsers(res.data.users);
     };
     fetchUsers();

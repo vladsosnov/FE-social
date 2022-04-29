@@ -15,7 +15,7 @@ export const Messenger = () => {
   const [arrivalMessage, setArrivalMessage] = useState<any>(null);
   const [onlineUsers, setOnlineUsers] = useState<any>([]);
   const socket: any = useRef();
-  const { user } = useTypedSelector((store) => store.auth);
+  const { user } = useTypedSelector((store) => store.user);
   const scrollRef: any = useRef();
 
   useEffect(() => {

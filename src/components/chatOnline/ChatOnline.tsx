@@ -20,8 +20,6 @@ export const ChatOnline = ({ onlineUsers, currentId, setCurrentChat }: any) => {
     getFriends();
   }, [currentId]);
 
-  console.log("friends", friends);
-
   useEffect(() => {
     setOnlineFriends(
       friends.filter((friend) => onlineUsers.includes(friend._id)),
