@@ -1,4 +1,3 @@
-import type { Post } from "types/Post";
 import type { UserAction } from "./types";
 
 const user = JSON.parse(localStorage.getItem("user") || JSON.stringify(null));
@@ -16,7 +15,7 @@ export const userReducer = (state = initialState, action: UserAction) => {
           ...state.user,
           likedPosts: isUserLikedPost
             ? state.user.likedPosts.filter(
-                (likedPost: string) => likedPost !== payload,
+                (postId: string) => postId !== payload,
               )
             : [...state.user.likedPosts, payload],
         },
